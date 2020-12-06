@@ -34,7 +34,7 @@ product.findBy = async (req, res) => {
 product.add = async (req, res) => {
   try {
     const result = await model.add(req.body);
-    return respon(res, 200, result);
+    return respon(res, 201, result);
   } catch (error) {
     return respon(res, 404, error);
   }
