@@ -49,9 +49,8 @@ product.update = (data) => new Promise((resolve, reject) => {
 });
 
 product.del = (id) => new Promise((resolve, reject) => {
-  db.query(`DELETE FROM public.product WHERE ${id}`)
-    .then(resolve(id),
-      resolve(console.log(id)))
+  db.query(`DELETE FROM public.product WHERE id = ${id}`)
+    .then(resolve(id))
     .catch((err) => reject(err));
 });
 
