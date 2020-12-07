@@ -24,7 +24,8 @@ product.findBy = async (req, res) => {
   try {
     const queryCategory = req.query.category;
     const queryPrice = req.query.price;
-    const result = await model.findBy(queryCategory, queryPrice);
+    const querySort = req.query.sort;
+    const result = await model.findBy(queryCategory, queryPrice, querySort);
     return respon(res, 200, result);
   } catch (error) {
     return respon(res, 404, error);

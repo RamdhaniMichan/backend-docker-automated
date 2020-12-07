@@ -23,12 +23,12 @@ product.getByName = (name) => new Promise((resolve, reject) => {
     .catch((err) => reject(err));
 });
 
-product.findBy = (queryCategory, queryPrice, orderBy = "name", sort = "DESC") => new Promise((resolve, reject) => {
-  db.query(`SELECT * 
+product.findBy = (queryCategory, queryPrice, querySort, orderBy = "id") => new Promise((resolve, reject) => {
+  db.query(`SELECT *
             FROM product
             INNER JOIN category ON (product.idfood = category.id)
-            WHERE category.name = '${queryCategory}' OR product.price = '${queryPrice}'
-            ORDER BY product.${orderBy} ${sort}`)
+            WHERE category.category = '${queryCategory}' OR product.price = '${queryPrice}'
+            ORDER BY product.${orderBy} ${querySort}`)
     .then((res) => {
       resolve(res.rows);
     })

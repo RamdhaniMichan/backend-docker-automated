@@ -15,19 +15,19 @@ category.get = () => new Promise((resolve, reject) => {
 });
 
 category.add = (data) => new Promise((resolve, reject) => {
-  db.query(`INSERT INTO public.category(name) VALUES ('${data.name}')`)
+  db.query(`INSERT INTO public.category(category) VALUES ('${data.category}')`)
     .then(resolve(data))
     .catch((err) => reject(err));
 });
 
 category.update = (data) => new Promise((resolve, reject) => {
-  db.query(`UPDATE public.category SET name = '${data.name}' WHERE id = ${data.id}`)
+  db.query(`UPDATE public.category SET category = '${data.category}' WHERE id = ${data.id}`)
     .then(resolve(data))
     .catch((err) => reject(err));
 });
 
 category.del = (id) => new Promise((resolve, reject) => {
-  db.query(`DELETE FROM public.category WHERE ${id}`)
+  db.query(`DELETE FROM public.category WHERE id = ${id}`)
     .then(resolve(id))
     .catch((err) => reject(err));
 });
