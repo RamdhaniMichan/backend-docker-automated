@@ -35,22 +35,22 @@ product.findBy = (queryCategory, queryPrice, querySort, orderBy = "id") => new P
     .catch((err) => reject(err));
 });
 
-product.add = (data) => new Promise((resolve, reject) => {
+product.add = (data, img) => new Promise((resolve, reject) => {
   db.query(`INSERT INTO public.product(name, description, price, image, idfood) 
-            VALUES ('${data.name}', '${data.description}', ${data.price}, '${data.image}', ${data.idfood})`)
-    .then(resolve(data))
+            VALUES ('${data.name}', '${data.description}', ${data.price}, '${img}', ${data.idfood})`)
+    .then(resolve(`${data.name} Product added`))
     .catch((err) => reject(err));
 });
 
 product.update = (data) => new Promise((resolve, reject) => {
   db.query(`UPDATE public.product SET name = '${data.name}', description = '${data.description}', price = ${data.price}, image = '${data.image}' WHERE id = ${data.id}`)
-    .then(resolve(data))
+    .then(resolve(`${data.name} Product update`))
     .catch((err) => { reject(err); });
 });
 
 product.del = (id) => new Promise((resolve, reject) => {
   db.query(`DELETE FROM public.product WHERE id = ${id}`)
-    .then(resolve(id))
+    .then(resolve(`${id} Delete success`))
     .catch((err) => reject(err));
 });
 

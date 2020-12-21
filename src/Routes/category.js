@@ -2,10 +2,11 @@ const express = require("express");
 
 const routes = express.Router();
 const controller = require("../Controllers/category");
+const validate = require("../Middleware/validate");
 
-routes.get("/", controller.get);
-routes.post("/", controller.add);
-routes.put("/", controller.update);
-routes.delete("/:id", controller.del);
+routes.get("/", validate("admin"), controller.get);
+routes.post("/", validate("admin"), controller.add);
+routes.put("/", validate("admin"), controller.update);
+routes.delete("/:id", validate("admin"), controller.del);
 
 module.exports = routes;
