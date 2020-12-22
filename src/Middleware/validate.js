@@ -18,9 +18,14 @@ const checkToken = (roles) => function (req, res, next) {
 
     let valid = false;
 
-    if (roles === decode.role) {
-      valid = true;
-    }
+    roles.map((role) => {
+      if (decode.role === role) {
+        valid = true;
+      }
+    });
+    // if (roles === decode.role) {
+    //   valid = true;
+    // }
 
     if (valid) {
       next();

@@ -47,3 +47,53 @@
 {"level":"info","message":"Database Connect"}
 {"level":"info","message":"Server running on port http://localhost:8081"}
 {"level":"info","message":"Redis connected"}
+{"level":"info","message":"Database Connect"}
+{"level":"info","message":"Database Connect"}
+{"level":"info","message":"Server running on port http://localhost:8081"}
+{"level":"info","message":"Redis connected"}
+{"length":102,"name":"error","severity":"FATAL","code":"28P01","file":"auth.c","line":"330","routine":"auth_failed","level":"error","message":"Database Not Connect password authentication failed for user \"michan\"","stack":"error: password authentication failed for user \"michan\"\n    at Parser.parseErrorMessage (/home/michandev/App/Arkademy/backend/Back-End-Intermediate/node_modules/pg-protocol/dist/parser.js:278:15)\n    at Parser.handlePacket (/home/michandev/App/Arkademy/backend/Back-End-Intermediate/node_modules/pg-protocol/dist/parser.js:126:29)\n    at Parser.parse (/home/michandev/App/Arkademy/backend/Back-End-Intermediate/node_modules/pg-protocol/dist/parser.js:39:38)\n    at Socket.<anonymous> (/home/michandev/App/Arkademy/backend/Back-End-Intermediate/node_modules/pg-protocol/dist/index.js:10:42)\n    at Socket.emit (events.js:315:20)\n    at addChunk (internal/streams/readable.js:309:12)\n    at readableAddChunk (internal/streams/readable.js:284:9)\n    at Socket.Readable.push (internal/streams/readable.js:223:10)\n    at TCP.onStreamRead (internal/stream_base_commons.js:188:23)"}
+{"level":"info","message":"Database Connect"}
+{"level":"info","message":"Server running on port http://localhost:8081"}
+{"level":"info","message":"Redis connected"}
+{"level":"info","message":"Database Connect"}
+{"level":"info","message":"Server running on port http://localhost:8081"}
+{"level":"info","message":"Redis connected"}
+{"level":"info","message":"Database Connect"}
+{"level":"info","message":"Server running on port http://localhost:8081"}
+{"level":"info","message":"Redis connected"}
+{"level":"info","message":"Database Connect"}
+{"level":"info","message":"Server running on port http://localhost:8081"}
+{"level":"info","message":"Redis connected"}
+{"level":"info","message":"Database Connect"}
+{"level":"info","message":"Server running on port http://localhost:8081"}
+{"level":"info","message":"Redis connected"}
+{"level":"info","message":"Database Connect"}
+{"level":"info","message":"Server running on port http://localhost:8081"}
+{"level":"info","message":"Redis connected"}
+{"level":"info","message":"Database Connect"}
+{"level":"info","message":"Server running on port http://localhost:8081"}
+{"level":"info","message":"Redis connected"}
+{"level":"info","message":"Database Connect"}
+{"level":"info","message":"Server running on port http://localhost:8081"}
+{"level":"info","message":"Redis connected"}
+{"level":"info","message":"Database Connect"}
+{"level":"info","message":"Server running on port http://localhost:8081"}
+{"level":"info","message":"Redis connected"}
+{"level":"info","message":"Database Connect"}
+{"level":"info","message":"Server running on port http://localhost:8081"}
+{"level":"info","message":"Redis connected"}
+{"level":"info","message":"Database Connect"}
+{"level":"info","message":"Server running on port http://localhost:8081"}
+{"level":"info","message":"Redis connected"}
+{"level":"info","message":"Database Connect"}
+{"level":"info","message":"Server running on port http://localhost:8081"}
+{"level":"info","message":"Redis connected"}
+{"level":"info","message":"Database Connect"}
+{"level":"info","message":"Server running on port http://localhost:8081"}
+{"level":"info","message":"Redis connected"}
+{"level":"info","message":"Database Connect"}
+{"level":"info","message":"Server running on port http://localhost:8081"}
+{"level":"info","message":"Redis connected"}
+{"level":"info","message":"Database Connect"}
+{"level":"info","message":"Server running on port http://localhost:8081"}
+{"level":"info","message":"Redis connected"}

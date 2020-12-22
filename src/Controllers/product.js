@@ -39,7 +39,7 @@ product.findBy = async (req, res) => {
 product.add = async (req, res) => {
   try {
     const {
-      name, description, price, idfood,
+      name, description, price, idcategory,
     } = req.body;
     if (name <= 0) {
       return respon(res, 500, { msg: "Name is required" });
@@ -53,8 +53,8 @@ product.add = async (req, res) => {
     if (req.file === undefined) {
       return respon(res, 500, { msg: "Image is required" });
     }
-    if (idfood <= 0) {
-      return respon(res, 500, { msg: "Price is required" });
+    if (idcategory <= 0) {
+      return respon(res, 500, { msg: "Id Category is required" });
     }
     const imgUrl = await cloadUpload(req.file.path);
     const result = await model.add(req.body, imgUrl);
@@ -66,7 +66,26 @@ product.add = async (req, res) => {
 
 product.update = async (req, res) => {
   try {
-    const result = await model.update(req.body);
+    const {
+      name, description, price, idcategory,
+    } = req.body;
+    if (name <= 0) {
+      return respon(res, 500, { msg: "Name is required" });
+    }
+    if (description <= 0) {
+      return respon(res, 500, { msg: "Description is required" });
+    }
+    if (price <= 0) {
+      return respon(res, 500, { msg: "Price is required" });
+    }
+    if (req.file === undefined) {
+      return respon(res, 500, { msg: "Image is required" });
+    }
+    if (idcategory <= 0) {
+      return respon(res, 500, { msg: "Id Category is required" });
+    }
+    const imgUrl = await cloadUpload(req.file.path);
+    const result = await model.update(req.body, imgUrl);
     return respon(res, 200, result);
   } catch (error) {
     return respon(res, 404, error);

@@ -6,6 +6,6 @@ const validate = require("../Middleware/validate");
 
 routes.get("/", validate("admin"), controller.getAll);
 routes.get("/", controller.getEmail);
-routes.post("/", validate("admin"), controller.add);
+routes.post("/", controller.add);
 
 module.exports = routes;

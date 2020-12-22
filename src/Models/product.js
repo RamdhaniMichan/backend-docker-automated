@@ -36,14 +36,14 @@ product.findBy = (queryCategory, queryPrice, querySort, orderBy = "id") => new P
 });
 
 product.add = (data, img) => new Promise((resolve, reject) => {
-  db.query(`INSERT INTO public.product(name, description, price, image, idfood) 
-            VALUES ('${data.name}', '${data.description}', ${data.price}, '${img}', ${data.idfood})`)
+  db.query(`INSERT INTO public.product(name, description, price, image, idcategory) 
+            VALUES ('${data.name}', '${data.description}', ${data.price}, '${img}', ${data.idcategory})`)
     .then(resolve(`${data.name} Product added`))
     .catch((err) => reject(err));
 });
 
-product.update = (data) => new Promise((resolve, reject) => {
-  db.query(`UPDATE public.product SET name = '${data.name}', description = '${data.description}', price = ${data.price}, image = '${data.image}' WHERE id = ${data.id}`)
+product.update = (data, img) => new Promise((resolve, reject) => {
+  db.query(`UPDATE public.product SET name = '${data.name}', description = '${data.description}', price = ${data.price}, image = '${img}', idcategory = ${data.idcategory} WHERE id = ${data.id}`)
     .then(resolve(`${data.name} Product update`))
     .catch((err) => { reject(err); });
 });
