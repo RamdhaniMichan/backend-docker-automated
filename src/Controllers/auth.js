@@ -2,7 +2,6 @@ const bcr = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const model = require("../Models/users");
 const respon = require("../Helpers/respons");
-// const logger = require('../Helpers/logger')
 
 class Auth {
   login = async (req, res) => {
@@ -39,6 +38,7 @@ class Auth {
       const result = {
         msg: "Token created",
         token,
+        role
       };
 
       return result;
@@ -47,6 +47,6 @@ class Auth {
     }
   }
 }
-// logger("hahaha")
+
 
 module.exports = new Auth();

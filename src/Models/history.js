@@ -15,8 +15,21 @@ history.get = () => new Promise((resolve, reject) => {
 });
 
 history.add = (data) => new Promise((resolve, reject) => {
-  db.query(`INSERT INTO public.history(invoice, chasier, amount, date, orders) VALUES (${data.invoice}, '${data.chasier}', ${data.amount}, ${data.date}), '{"${data.orders}"}'`)
+  console.log(data);
+  db.query(`INSERT INTO public.history(chasier, amount, orders) VALUES ('${data.chasier}', ${data.amount}, '${data.orders}')`)
     .then(resolve(data))
+    .catch((err) => reject(err));
+});
+
+history.getTotal = () => new Promise((resolve, reject) => {
+  db.query("SELECT COUNT(orders) FROM public.history")
+    .then((res) => resolve(res.rows))
+    .catch((err) => reject(err));
+});
+
+history.getAmount = () => new Promise((resolve, reject) => {
+  db.query("SELECT SUM(amount) FROM public.history")
+    .then((res) => resolve(res.rows))
     .catch((err) => reject(err));
 });
 
