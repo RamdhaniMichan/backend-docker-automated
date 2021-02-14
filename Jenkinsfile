@@ -90,7 +90,7 @@ pipeline {
                                     verbose: true,
                                     transfers: [
                                         sshTransfer(
-                                            execCommand : "cd dockerize; docker-compose up -d",
+                                            execCommand : "cd config-image; docker-compose up -d",
                                             execTimeout: 1200000
                                         )
                                     ]
@@ -107,7 +107,7 @@ pipeline {
                                     verbose: true,
                                     transfers: [
                                         sshTransfer(
-                                            execCommand : "cd dockerize; docker-compose up -d",
+                                            execCommand : "cd config-image; docker-compose up -d",
                                             execTimeout: 1200000
                                         )
                                     ]
