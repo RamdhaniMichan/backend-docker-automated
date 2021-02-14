@@ -1,4 +1,8 @@
-def dockerhub = "michan11/api-jenkins"
+<<<<<<< HEAD
+
+=======
+def dockerhub = "michan11/backend-api"
+>>>>>>> edit jenkinsfile
 def image_name = "${dockerhub}:${BRANCH_NAME}"
 def builder
 
@@ -6,59 +10,55 @@ pipeline {
     agent any
 
     environment {
+<<<<<<< HEAD
         branch = "testing"
     }
 
     parameters {
-        string(name: 'DOCKERHUB', defaultValue: 'nameDockerID', description: 'DockerID')
-        booleanParam(name: 'RUNTEST', defaultValue: 'false', description: 'Not Running')
-        choice(name: 'DEPLOY', choices: ["master", "testing"], description: 'Build Run')
+=======
+        branch = "development"
+    }
+
+    parameters {
+        choice(name: 'DEPLOY', choices: ["DEVELOPMENT", "PRODUCTION"], description: 'Build Run')
+>>>>>>> edit jenkinsfile
     }
 
     stages {
 
-        stage("Installing ....") {
+<<<<<<< HEAD
+=======
+        stage("Installing") {
             steps {
-                nodejs("node") {
+                nodejs("node14") {
+>>>>>>> edit jenkinsfile
                     sh 'npm install'
                 }
             }
         }
 
-        stage("Build Docker to Production") {
-            when {
-                expression {
-                    params.DEPLOY == "master"
-                }
-            }
-
+<<<<<<< HEAD
+       
+=======
+        stage("Build Docker") {
             steps {
                script {
-                   builder = docker.build("${image_name}")
-               }
-            }
-        }
+                   if (params.DEPLOY == "DEVELOPMENT") {
+                        builder = docker.build("${dockerhub}:${env.branch}")
+                   }
 
-        stage("Build Docker to Testing") {
-            when {
-                expression {
-                    params.DEPLOY == "testing"
-                }
-            }
-
-            steps {
-               script {
-                   builder = docker.build("${dockerhub}:${env.branch}")
+                   if (params.DEPLOY == "PRODUCTION") {
+                        builder = docker.build("${dockerhub}")
+                   }
+>>>>>>> edit jenkinsfile
                }
             }
         }
 
         stage("Testing") {
-            when {
-                expression {
-                    params.RUNTEST
-                }
-            }
+<<<<<<< HEAD
+=======
+>>>>>>> edit jenkinsfile
             steps {
                  script {
                      builder.inside {
@@ -77,53 +77,45 @@ pipeline {
         }
 
         stage("Deploy Production") {
-            when {
-                expression {
-                    params.DEPLOY == "master"
-                }
-            }
+<<<<<<< HEAD
+            
+=======
             steps {
                 script {
-                    sshPublisher(
-                        publishers: [
-                            sshPublisherDesc(
-                                configName: 'productionServer',
-                                verbose: true,
-                                transfers: [
-                                    sshTransfer(
-                                        execCommand : "cd dockerize; docker-compose up -d",
-                                        execTimeout: 1200000
-                                    )
-                                ]
-                            )
-                        ]
-                    )
-                }
-            }
-        }
+                    if (params.DEPLOY == "DEVELOPMENT") {
+                        sshPublisher(
+                            publishers: [
+                                sshPublisherDesc(
+                                    configName: 'develop',
+                                    verbose: true,
+                                    transfers: [
+                                        sshTransfer(
+                                            execCommand : "cd dockerize; docker-compose up -d",
+                                            execTimeout: 1200000
+                                        )
+                                    ]
+                                )
+                            ]
+                        )
+                    }
 
-        stage("Deploy Testing") {
-            when {
-                expression {
-                    params.DEPLOY == "testing"
-                }
-            }
-            steps {
-                script {
-                    sshPublisher(
-                        publishers: [
-                            sshPublisherDesc(
-                                configName: 'testingServer',
-                                verbose: false,
-                                transfers: [
-                                    sshTransfer(
-                                        execCommand : "cd dockerize; docker-compose up -d",
-                                        execTimeout: 1200000
-                                    )
-                                ]
-                            )
-                        ]
-                    )
+                    if (params.DEPLOY == "PRODUCTION") {
+                        sshPublisher(
+                            publishers: [
+                                sshPublisherDesc(
+                                    configName: 'develop',
+                                    verbose: true,
+                                    transfers: [
+                                        sshTransfer(
+                                            execCommand : "cd dockerize; docker-compose up -d",
+                                            execTimeout: 1200000
+                                        )
+                                    ]
+                                )
+                            ]
+                        )
+                    }
+>>>>>>> edit jenkinsfile
                 }
             }
         }
