@@ -1,54 +1,54 @@
 version: "3.8"
-services: 
-    postgres:
-        image: postgres:latest
-        ports:
-            - "5151:5432"
-        volumes:
-            - ./pgdata:/var/lib/postgresql/data
-        networks: 
-            - dockernet
-        environment:
-            - POSTGRES_PASSWORD=michan123
-            - POSTGRES_USER=michan
-            - POSTGRES_DB=produk
-        mem_limit: 250m
-        cpus: 0.5
-        
-    redis: 
-        image: my-redis:new
-        ports: 
-            - "6161:6379"
-        networks: 
-            - dockernet
-        hostname: redis
-        volumes:
-            - ./redis.conf:/usr/local/etc/redis/redis.conf
-        mem_limit: 250m
-        cpus: 0.5
-    
-    nodejs: 
-        image: nodejs:test
-        ports: 
-            - 8082-8085:8081
-        env_file:
-            - ./Back-End-Sequelize/.env
-        networks: 
-            - dockernet
-        depends_on:
-            - postgres
-            - redis
-        mem_limit: 250m
-        cpus: 0.5
-        scale: '3'
-    vuejs:
-        image: vue:app
-        ports: 
-            - 9000:8080
-        env_file: 
-            - ./frontend-vuex/.env
-        mem_limit: 250m
-        cpus: 0.5
+services:
+  postgres:
+    image: postgres:latest
+    ports:
+      - "5151:5432"
+    volumes:
+      - ./pgdata:/var/lib/postgresql/data
+    networks:
+      - dockernet
+    environment:
+      - POSTGRES_PASSWORD=michan123
+      - POSTGRES_USER=michan
+      - POSTGRES_DB=produk
+    mem_limit: 250m
+    cpus: 0.5
 
-networks: 
-    dockernet:
+  redis:
+    image: redis:latest
+    ports:
+      - "6161:6379"
+    networks:
+      - dockernet
+    hostname: redis
+    volumes:
+      - ./redis.conf:/usr/local/etc/redis/redis.conf
+    mem_limit: 250m
+    cpus: 0.5
+
+  nodejs:
+    image: michan11/backend-api
+    ports:
+      - 8082-8085:8081
+    env_file:
+      - ./backend/.env
+    networks:
+      - dockernet
+    depends_on:
+      - postgres
+      - redis
+    mem_limit: 250m
+    cpus: 0.5
+    scale: "2"
+  vuejs:
+    image: michan11/frontend-vue
+    ports:
+      - 9000:8080
+    env_file:
+      - ./frontend/.env
+    mem_limit: 250m
+    cpus: 0.5
+
+networks:
+  dockernet:
